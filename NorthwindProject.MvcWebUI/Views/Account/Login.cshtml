@@ -1,0 +1,33 @@
+﻿@model NorthwindProject.MvcWebUI.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-10">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(m => m.User.UserName, "User Name")
+            @Html.TextBoxFor(m => m.User.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.User.UserName)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.User.Password, "Password")
+            @Html.TextBoxFor(m => m.User.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.User.Password)
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe)
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    }
+
+
+
+</div>

@@ -1,0 +1,44 @@
+﻿@model NorthwindProject.MvcWebUI.Models.ProductAddViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-10">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(m => Model.Product.ProductName, "Product Name")
+            @Html.TextBoxFor(m => Model.Product.ProductName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => Model.Product.ProductName)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => Model.Product.CategoryId, "Category Id")
+            @Html.DropDownListFor(m => Model.Product.CategoryId, Model.Categories, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => Model.Product.ProductName)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => Model.Product.QuantityPerUnit, "Quantity Per Unit")
+            @Html.TextBoxFor(m => Model.Product.QuantityPerUnit, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => Model.Product.QuantityPerUnit)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => Model.Product.UnitPrice, "Unit Price")
+            @Html.TextBoxFor(m => Model.Product.UnitPrice,
+            String.Format("{0:n2}", Model.Product.UnitPrice).Replace(",", "."),
+            new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => Model.Product.UnitPrice)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => Model.Product.UnitsInStock, "Units In Stock")
+            @Html.TextBoxFor(m => Model.Product.UnitsInStock,
+            new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => Model.Product.UnitsInStock)
+        </div>
+        
+        @Html.HiddenFor(m=>m.Product.Id)
+        <button type="submit" class="btn btn-primary">Update</button>
+    }
+</div>
